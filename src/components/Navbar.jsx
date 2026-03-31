@@ -1,39 +1,49 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Plane } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+    <nav className={`fixed w-full z-40 transition-all duration-300 ${scrolled ? 'bg-black/90 backdrop-blur-md shadow-lg py-2 top-0 border-b border-gray-800' : 'bg-gradient-to-b from-black/80 to-transparent py-4 top-0'} border-b border-gray-400/30`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-12">
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
-              <Plane className="h-8 w-8 text-blue-600" />
-              <span className="font-bold text-xl text-gray-900 tracking-tight">Zyvora Travel</span>
+              <span className="font-extrabold text-2xl lg:text-3xl text-white tracking-tight drop-shadow-md whitespace-nowrap">Zyvora Travel</span>
             </Link>
           </div>
           
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</Link>
-            <a href="#tours" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Tours</a>
-            <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About</a>
-            <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Contact</Link>
-            <button className="bg-blue-600 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
-              Book Now
+          <div className="hidden xl:flex items-center space-x-4 xl:space-x-6 text-[11px] xl:text-xs font-semibold tracking-wider">
+            <a href="#community" className="text-gray-200 hover:text-white transition-colors flex items-center gap-1 whitespace-nowrap">COMMUNITY TRIPS <span className="text-[10px] text-gray-400">▼</span></a>
+            <a href="#bikes" className="text-gray-200 hover:text-white transition-colors flex items-center gap-1 whitespace-nowrap">BIKE TRIPS <span className="text-[10px] text-gray-400">▼</span></a>
+            <a href="#luxec" className="text-gray-200 hover:text-white transition-colors flex items-center gap-1 whitespace-nowrap">ZYVORA LUXURY <span className="text-[10px] text-gray-400">▼</span></a>
+            <a href="#world" className="text-gray-200 hover:text-white transition-colors flex items-center gap-1 whitespace-nowrap">ZYVORA WORLD <span className="text-[10px] text-gray-400">▼</span></a>
+            <Link to="/corporate" className="text-gray-200 hover:text-white transition-colors whitespace-nowrap">CORPORATE BOOKINGS</Link>
+            <Link to="/contact" className="bg-[#e64045] hover:bg-[#c9363b] text-white px-4 py-2 rounded-sm font-bold tracking-widest transition-colors ml-2 shadow-lg active:scale-95 whitespace-nowrap">CONTACT US</Link>
+            <button className="text-gray-200 hover:text-white transition-colors ml-2">
+              <Search className="w-5 h-5" />
             </button>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="xl:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-blue-600 focus:outline-none"
+              className="text-white hover:text-gray-300 focus:outline-none"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
             </button>
           </div>
         </div>
@@ -41,15 +51,14 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white mt-1 border-t border-gray-100">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link to="/" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50">Home</Link>
-            <a href="#tours" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50">Tours</a>
-            <a href="#about" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50">About</a>
-            <Link to="/contact" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50">Contact</Link>
-            <button className="w-full text-left px-3 py-2 mt-2 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 transition-colors">
-              Book Now
-            </button>
+        <div className="xl:hidden bg-[#1a1a1a] absolute w-full mt-4 border-t border-gray-800 shadow-2xl">
+          <div className="px-4 pt-2 pb-4 space-y-2">
+            <a href="#community" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-white font-medium hover:bg-gray-800 rounded">COMMUNITY TRIPS</a>
+            <a href="#bikes" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-white font-medium hover:bg-gray-800 rounded">BIKE TRIPS</a>
+            <a href="#luxec" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-white font-medium hover:bg-gray-800 rounded">ZYVORA LUXURY</a>
+            <a href="#world" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-white font-medium hover:bg-gray-800 rounded">ZYVORA WORLD</a>
+            <Link to="/corporate" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-white font-medium hover:bg-gray-800 rounded">CORPORATE BOOKINGS</Link>
+            <Link to="/contact" onClick={() => setIsOpen(false)} className="block px-3 py-2 mt-2 bg-[#e64045] hover:bg-[#c9363b] text-white font-bold text-center rounded tracking-widest">CONTACT US</Link>
           </div>
         </div>
       )}

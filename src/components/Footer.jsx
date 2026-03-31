@@ -59,7 +59,9 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
           <p>&copy; {new Date().getFullYear()} Zyvora Travel. All rights reserved.</p>
-          <p className="mt-2 md:mt-0">Designed with passion for travel.</p>
+          <p className="mt-2 md:mt-0 text-center md:text-right">
+            Designed with passion for travel. | Developed by <a href="https://instagram.com/coder_vivek" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-400 font-semibold transition-colors">@coder_vivek</a>
+          </p>
         </div>
       </div>
     </footer>
