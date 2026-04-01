@@ -4,12 +4,14 @@ import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
+import MaintenancePopup from './components/MaintenancePopup';
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col font-sans text-gray-900 bg-white">
         <Navbar />
+        <MaintenancePopup />
         <FloatingActions />
         <main className="flex-grow">
           <Routes>

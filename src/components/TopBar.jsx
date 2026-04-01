@@ -10,7 +10,7 @@ const TopBar = () => {
         </div>
         <div className="flex items-center gap-2 hover:text-white cursor-pointer transition-colors">
           <Mail className="w-4 h-4" />
-          <span>care@zyvoratravel.com</span>
+          <span>care@stgtravel.com</span>
         </div>
       </div>
       <div>

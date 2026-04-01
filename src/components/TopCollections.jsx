@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 const collections = [
   {
     id: 1,
@@ -81,19 +83,29 @@ const TopCollections = () => {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1a1a1a] mb-4 flex items-center justify-center gap-4">
             <span className="h-0.5 w-8 bg-gray-600 hidden sm:block"></span>
             OUR TOP COLLECTIONS
             <span className="h-0.5 w-8 bg-gray-600 hidden sm:block"></span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {collections.map((item) => (
-            <div 
+          {collections.map((item, index) => (
+            <motion.div 
               key={item.id} 
-              className={`relative overflow-hidden group cursor-pointer ${item.colSpan} min-h-[250px] md:min-h-[220px]`}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`relative overflow-hidden group cursor-pointer ${item.colSpan} min-h-[250px] md:min-h-[220px] rounded-2xl shadow-md border border-gray-100/50`}
             >
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 z-10" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent z-10" />
@@ -125,7 +137,7 @@ const TopCollections = () => {
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

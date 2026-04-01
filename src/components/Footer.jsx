@@ -6,9 +6,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-1 border-b md:border-b-0 border-gray-800 pb-8 md:pb-0">
-            <div className="flex items-center gap-2 mb-4">
-              <Plane className="h-8 w-8 text-blue-500" />
-              <span className="font-bold text-2xl tracking-tight">Zyvora Travel</span>
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/logo.png" alt="STG Logo" className="h-10 w-auto object-contain bg-white rounded-sm p-1" />
+              <span className="font-bold text-2xl tracking-tight text-white uppercase italic">STG</span>
             </div>
             <p className="text-gray-400 mb-6">
               Making your dream vacations a reality. Experience the world with our premium tour packages.
@@ -58,7 +58,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
-          <p>&copy; {new Date().getFullYear()} Zyvora Travel. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} STG. All rights reserved.</p>
           <p className="mt-2 md:mt-0 text-center md:text-right">
             Designed with passion for travel. | Developed by <a href="https://instagram.com/coder_vivek" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-400 font-semibold transition-colors">@coder_vivek</a>
           </p>
